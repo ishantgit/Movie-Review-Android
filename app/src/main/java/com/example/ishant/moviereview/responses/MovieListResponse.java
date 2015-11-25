@@ -1,6 +1,6 @@
 package com.example.ishant.moviereview.responses;
 
-import com.example.ishant.moviereview.models.Movie;
+import com.example.ishant.moviereview.models.MovieItem;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -10,13 +10,13 @@ import java.util.ArrayList;
  */
 public class MovieListResponse {
     @SerializedName("movies")
-    private ArrayList<Movie> movies;
+    private ArrayList<MovieItem> movies;
 
-    public ArrayList<Movie> getMovies() {
+    public ArrayList<MovieItem> getMovies() {
         return movies;
     }
 
-    public void setMovies(ArrayList<Movie> properties) {
+    public void setMovies(ArrayList<MovieItem> properties) {
         this.movies = movies;
     }
 }

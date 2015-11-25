@@ -1,11 +1,13 @@
 package com.example.ishant.moviereview;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
-import com.example.ishant.moviereview.models.Movie;
+import com.example.ishant.moviereview.models.MovieItem;
 import com.example.ishant.moviereview.responses.MovieListResponse;
 import com.example.ishant.moviereview.restApi.RestApiClient;
 import com.example.ishant.moviereview.restApi.RestApiService;
@@ -20,7 +22,7 @@ import retrofit.Retrofit;
 public class HomeActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private List<Movie> movieItemList;
+    private List<MovieItem> movieItemList;
     private RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,5 +74,15 @@ public class HomeActivity extends AppCompatActivity {
     private void renderView(){
         MovieAdapter movieAdapter = new MovieAdapter(this,movieItemList);
         recyclerView.setAdapter(movieAdapter);
+        movieAdapter.setOnItemClickListener(new MovieAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent();
+                MovieItem movieItem = movieItemList.get(position);
+                intent.putExtra("name", movieItem.getName());
+                intent.setClass(getApplicationContext(), ShowTweetActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
